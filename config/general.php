@@ -34,4 +34,6 @@ return GeneralConfig::create()
     ->aliases([
         '@web' => App::env('PRIMARY_SITE_URL'),
     ])
+    ->limitAutoSlugsToAscii(true)
+    ->extraAllowedFileExtensions(['xml'])
 ;
