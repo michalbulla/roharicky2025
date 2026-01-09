@@ -1,0 +1,34 @@
+# Environment Specific files #
+##############################
+/.ddev
+/.env
+/config/license.key
+craft.sublime-workspace
+
+# Files in the Web folder #
+###########################
+/web/assets
+
+# Framework Code files #
+########################
+/node_modules
+/vendor
+
+# Craft Project Config files #
+##############################
+/config/project
+
+# Dev scripts and styles #
+##########################
+web/app/scripts.js
+web/app/styles.css
+source/styles.css
+
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
