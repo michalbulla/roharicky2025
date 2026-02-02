@@ -1,0 +1,391 @@
+// MAIN ELEMENTS ---------------------
+
+body {
+  margin: 0;
+  background: $color-white;
+}
+
+
+.page-wrap {
+  background-color: $color-white;
+}
+
+.container {
+  width: 100%;
+
+  @media #{$large-desktop} {
+    width: 1100px;
+  }
+
+  &.narrow {
+    @media #{$large-desktop} {
+      width: 970px;
+    }
+  }
+}
+
+.content-wrap {
+  background-color: $color-white;
+}
+
+.content {
+  display: flex;
+}
+
+.main-content {
+  flex: 1;
+  min-height: 100px;
+  max-width: 100%;
+}
+
+.sidebar {
+  width: 243px;
+  margin-left: 30px;
+
+  @media #{$mobile} {
+    display: none;
+  }
+}
+
+// Main Content Blocks 
+
+.text .container {
+  padding: 0 10em 1em;
+
+  @media #{$mobile} {
+    padding: 0 1em 1em 1em;
+  }
+
+  p {
+    line-height: 1.55em;
+  }
+}
+
+.main-content .text:first-of-type .container {
+  background-image: url(/img/slimak.png);
+  background-position: left bottom;
+  background-repeat: no-repeat;
+  background-size: 230px;
+
+}
+
+.images-wrap {
+  text-align: center;
+  
+  &:nth-child(2n + 1) {
+    background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0) 100%),  url(/img/bg-image-r.jpg);
+    background-size: cover;
+    background-position: center center;
+  }
+
+  .images {
+    margin-bottom: 2em;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    .image {
+      width: 100%;
+      max-width: 350px;
+      padding-bottom: 53%;
+      overflow: hidden;
+      position: relative;
+      margin-bottom: 1.5%;
+      border: 5px solid rgba($color-white, .6);
+      
+      @media #{$mobile} {
+        margin: .5em auto;
+        padding-bottom: 34%;
+      }
+
+      @media #{$small-mobile} {
+        padding-bottom: 56%;
+      }
+      
+      @media #{$not-mobile} {
+        width: 32%;
+        padding-bottom: 21%;
+      }
+
+      img {
+        max-width: 101%;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        transition: all .5s;
+        
+        &:hover {
+          @media #{$not-mobile} {
+            width: 110%;
+            max-width: 110%;
+          }
+        }
+      }
+    }
+
+    &.one {
+      justify-content: center;
+
+      .image {
+        @media #{$not-mobile} {
+          width: 100%;
+          padding-bottom: 33%;
+        }
+      }
+    }
+  }
+}
+.gallery-wrap {
+  height: 500px;
+
+  @media #{$mobile} {
+    height: 400px;
+  }
+}
+
+.text-two-columns {
+  padding-bottom: 2em;
+
+  @media #{$not-mobile} {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  div {
+    flex: 0 0 45%;
+    text-align: center;
+  }
+}
+
+// Header ---------------------------------------------------------------------
+
+header {
+  @media #{$mobile} {
+    background-repeat: repeat;
+  }
+
+  .header-phone {
+    color: $color-white;
+    font-size: 1.5em;
+    padding: .5em;
+    display: inline-block;
+  }
+
+  .header-container {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
+    z-index: 100;
+  }
+
+  .logo {
+    flex: 0 0 254px;
+    display: block;
+
+    @media #{$mobile} {
+      flex: 0 0 200px;
+      margin: 0 0 0 15px;
+    }
+
+    .logo-desktop {
+      @media #{$mobile} {
+        display: none;
+      }
+    }
+
+    .logo-mobile {
+      @media #{$not-mobile} {
+        display: none;
+      }
+    }
+
+    img {
+      max-width: 100%;
+    }
+  }
+
+  .links {
+    height: 56px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    @media #{$mobile} {
+      display: none;
+    }
+
+    a {
+      @include link-underline-on-hover;
+      display: block;
+      color: $color-white;
+      font-weight: bold;
+      padding: 1.05em 1em;
+      border-right: 1px solid rgba($color-white, .2);
+    }
+  }
+
+  .main-nav {
+
+  }
+
+  .header-block {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    z-index: 106;
+    align-items: center;
+
+    @media #{$mobile} {
+      height: 50px;
+      background: none;
+    }
+
+    @media #{$not-mobile} {
+
+    }
+  }
+}
+
+.sr-only {
+  text-align: center;
+  font-size: 1em;
+  color: $color-white !important;
+  background-color: rgba(#000, .7);
+  display: block;
+  border-radius: 5px;
+  padding: .3em 1em;
+  width: 250px;
+}
+
+// Sidebar --------------------------------------------------------------------
+
+.sidebar {}
+
+// Footer ---------------------------------------------------------------------
+
+footer {
+  background-color: #eee;
+  border-top: 1px solid #ccc;
+
+  .footer-logo {
+    margin: 20px auto;
+    max-width: 120px;
+    display: block;
+
+    img {
+      max-width: 100%;
+    }
+  }
+
+  p {
+    font-size: 1em;
+  }
+
+  .footer-block {
+    justify-content: space-between;
+    padding-top: 2em;
+
+    @media #{$not-mobile} {
+      display: flex;
+    }
+  }
+
+  .okolie {
+    @media #{$not-mobile} {
+      display: flex;
+    }
+
+    div {
+      @media #{$not-mobile} {
+        margin-left: 2em;
+      }
+
+      &:nth-child(2) {
+        margin-bottom: 2em;
+
+        @media #{$not-mobile} {
+          padding-top: 2.4em;
+        }
+      }
+    }
+
+    ul {
+      @media #{$mobile} {
+        margin-bottom: 0
+      }
+    }
+  }
+
+  h2 {
+    color: rgba($color-white, .95);
+    margin-top: 0;
+
+    @media #{$mobile} {
+      margin-top: 2em;
+    }
+  }
+
+  a,
+  a:hover,
+  a:focus,
+  ul {
+    color: rgba($color-white, .75);
+  }
+
+  h2,
+  .phone,
+  .email a {
+    @include font-secondary;
+    font-size: 1.38em;
+    color: $color-white;
+  }
+
+  .phone {
+    margin-bottom: .4em;
+
+    &:before {
+      content: '\f098';
+      font-family: 'FontAwesome';
+      display: block;
+      float: left;
+      margin-right: .5em;
+      font-size: 1.1em;
+    }
+  }
+
+  .email {
+    margin-bottom: .4em;
+
+    &:before {
+      content: '\f0e0';
+      font-family: 'FontAwesome';
+      display: block;
+      float: left;
+      margin-right: .5em;
+      font-size: 1.3em;
+    }
+  }
+
+  .copyright {
+    font-size: .87em;
+  }
+
+  .fa-facebook-official {
+    font-size: 2em;
+  }
+
+  a {
+    @include link-underline-on-hover;
+  }
+
+  ul {
+    margin-left: 1em;
+    padding-left: 0;
+
+    li {
+      padding: .3em 0;
+    }
+  }
+}

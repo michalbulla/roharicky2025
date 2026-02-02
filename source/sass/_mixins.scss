@@ -1,0 +1,168 @@
+// ----------------------------------------------------------------------------
+// Specify a custom font from TypeKit or Google Fonts
+// @include font-primary('normal|bold');
+// ----------------------------------------------------------------------------
+
+@mixin font-primary($weight:normal) {
+  font-family: 'Poppins', sans-serif;
+
+  @if $weight == 'normal' {
+    font-weight: 400;
+  } @else {
+    // bold font
+    font-weight: 600;
+  }
+}
+
+@mixin font-secondary() {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+}
+
+@mixin font-navigation() {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+}
+
+@mixin gradient-brand-one () {
+  @include gradient($color-brand-one, darken($color-brand-one, 5%));
+}
+
+// ----------------------------------------------------------------------------
+// Include within a ul element that should be used as a horizonal navigation
+// @include inline-nav(
+//   $separator: '|',
+//   $separator-padding: 0 .2em
+// );
+// ----------------------------------------------------------------------------
+
+@mixin inline-nav($separator: '|', $separator-padding: 0 .2em) {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    display: inline-block;
+
+    &::after {
+      content: $separator;
+      padding: $separator-padding;
+    }
+
+    &:last-child {
+      &::after {
+        content: none;
+      }
+    }
+  }
+}
+
+// ----------------------------------------------------------------------------
+// Include within a element to set the link and hover colors
+// @include link-color(
+//   $color: $color-link,
+//   $hover-color: $color
+// );
+// ----------------------------------------------------------------------------
+
+@mixin link-color($color: $color-link, $hover-color: $color) {
+  color: $color;
+
+  &:hover {
+    color: $hover-color;
+  }
+}
+
+// ----------------------------------------------------------------------------
+// Include within a element to reverse the default 'hover' style
+// @include link-underline-on-hover;
+// ----------------------------------------------------------------------------
+
+@mixin link-underline-on-hover {
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+// ----------------------------------------------------------------------------
+// Include within a element to disable the navigation functionality
+// @include link-disabled;
+// ----------------------------------------------------------------------------
+
+@mixin link-disabled {
+  cursor: default;
+  pointer-events: none;
+}
+
+// ----------------------------------------------------------------------------
+// Include in a card within a container that uses display:flex; to create a grid of cells
+// @include grid-cell(
+//   $cells-per-row: 3,
+//   $cell-gap: 3%
+// );
+// ----------------------------------------------------------------------------
+
+@mixin grid-cell($cells-per-row: 3, $cell-gap: 3%) {
+  flex: 0 0 ((100% - ($cell-gap * ($cells-per-row - 1))) / $cells-per-row);
+  margin-right: $cell-gap;
+
+  &:nth-of-type(#{$cells-per-row}n) {
+    margin-right: 0;
+  }
+}
+
+// ----------------------------------------------------------------------------
+// Add Css Glyphs/Special Characters
+// @include glyphs('middot|pipe|slash|raquo|lt|gt|bull|lq|rq|lsq|rsq');
+// ----------------------------------------------------------------------------
+
+@mixin glyphs($type) {
+  display: inline-block;
+  @if $type == 'middot' {
+    content: '\00b7';
+  } @elseif $type == 'pipe' {
+    content: '\007c';
+  } @elseif $type == 'slash'{
+    content: '\2044';
+  } @elseif $type == 'raquo'{
+    content: '\00bb';
+  } @elseif $type == 'lt'{
+    content: '\2039';
+  } @elseif $type == 'gt'{
+    content: '\203a';
+  } @elseif $type == 'bull'{
+    content: '\2022';
+  } @elseif $type == 'lq'{
+    content: '\201C';
+  } @elseif $type == 'rq'{
+    content: '\201D';
+  } @elseif $type == 'lsq'{
+    content: '\2018';
+  } @elseif $type == 'rsq'{
+    content: '\2019';
+  }
+}
+
+// ----------------------------------------------------------------------------
+// Create gradient
+// @include gradient(
+//   $color1: #666,
+//   $color2: #fff,
+//   $start: top|left
+// );
+// ----------------------------------------------------------------------------
+
+@mixin gradient($color1: #666, $color2: #fff, $start: top ) {
+  background: $color1; // Old browsers
+  background: -moz-linear-gradient($start, $color1 0%, $color2 100%); // FF3.6-15
+  background: -webkit-linear-gradient($start, $color1 0%, $color2 100%); // Chrome10-25, Safari5.1-6
+  @if $start == 'top' {
+    background: linear-gradient(to bottom, $color1 0%, $color2 100%); // W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$color1', endColorstr='$color2', GradientType=0); // IE6-9
+  } @else {
+    background: linear-gradient(to right, $color1 0%, $color2 100%); // W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$color1', endColorstr='$color2', GradientType=1); // IE6-9 *
+  }
+}

@@ -2,16 +2,44 @@
 @tailwind components;
 @tailwind utilities;
 
-@import 'base/custom';
-@import 'base/navigation';
-@import 'base/content';
-@import 'base/platform';
+
+
+
+@import 'include-media';
+@import 'variables';
+@import 'mixins';
 
 // Fancybox -------------------------------------------------------------------
 
-// @import 'fancybox/jquery.fancybox';
-// @import 'fancybox/custom';
+@import 'fancybox/jquery.fancybox';
+@import 'fancybox/custom';
 
 // Justified ------------------------------------------------------------------
 
-// @import 'justified/justifiedGallery.min';
+@import 'justified/justifiedGallery.min';
+
+// Base Defaults --------------------------------------------------------------
+
+@import 'base/defaults';
+
+// Prototype ------------------------------------------------------------------
+
+// Disable the stylesheet below after the prototyping phase is complete
+// @import 'templates/prototype';
+
+// Theme ----------------------------------------------------------------------
+
+@import 'layout';
+
+// Templates ------------------------------------------------------------------
+
+@import 'templates/homePage';
+@import 'templates/search';
+@import 'templates/kontakt';
+@import 'templates/perForm';
+@import 'templates/kalendar';
+
+// Enable the stylesheet below if the site will NOT use Responsive features
+// @import 'base/nonResponsive';
+
+

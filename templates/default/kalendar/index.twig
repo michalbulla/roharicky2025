@@ -1,0 +1,46 @@
+{% extends "_layouts/base" %}
+{% set uri = entry.uri|default('blog') %}
+{% set pageHeading = entry.pageHeading|default(entry.title) %}
+
+{% set showSidebar = true %}
+
+{% set position = 0 %}
+{% for number in entry.cislo.options %}
+  {% if number.value == entry.cislo %}
+    {% set position = loop.index0 %}
+  {% endif %}
+{% endfor %}
+
+{% set firstDate = entry.dateUpdated|date_modify("-" ~ position ~" days") %}
+
+{% block pageLayout %}
+  {% embed '_layouts/page/default' %}
+    {% block contentLayout %}
+      {% embed '_layouts/content/homePage' %}
+
+        {% block mainContent %}
+          
+            {# {% include "/_partials/carousel" %}
+            {% include "/_partials/carouselJs" %} #}
+            <div class="numbers-wrap">
+              <div class="container">
+                <div class="numbers">
+                  {% for number in entry.cislo.options %}
+                    <div class="number-wrap {{ entry.knoflik == 0 ? 'gray' }} {{ firstDate|date_modify("+"~ loop.index0 ~" day")|date('j.n') == now|date('j.n') ? 'active' }} {{ firstDate|date_modify("+"~ loop.index0 ~" day")|date('c') >= spln.spln|date('c') and firstDate|date_modify("+"~ loop.index0 ~" day")|date('c') < spln.spln|date_modify('+ 7 days')|date('c') ? 'spln' }} {{ number.value < 1 and number.value > -4 ? 'purple' }} {{ number.value < -3 and number.value > -9 ? 'green' }} {{ number.value < -8 and number.value > -11 ? 'purple' }}">
+                      <span class="date">{{ firstDate|date_modify("+"~ loop.index0 ~" day")|date('D. j.n') }}</span>
+                      <span class="number">{{ number.value }}</span>
+                    </div>
+                    {% if loop.index == 6 or loop.index == 12 or loop.index == 18 %}
+                      <div class="number-wrap break"></div>                    
+                    {% endif %}
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+
+          
+        {% endblock %}
+      {% endembed %}
+    {% endblock %}
+  {% endembed %}
+{% endblock %}

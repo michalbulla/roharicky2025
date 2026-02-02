@@ -1,0 +1,54 @@
+// Base colors ----------------------------------------------------------------
+
+$color-white: #fff;
+$color-text: #666666;
+$color-brand-one: #0A6108;
+$color-brand-two: #2B7E29;
+$color-brand-three: #2B7E29;
+$color-link: #4e93d8;
+$color-gray: #777777;
+
+// Theme colors ---------------------------------------------------------------
+
+// declare the custom design colors here
+
+// Derived colors -------------------------------------------------------------
+
+$color-note: #999;
+$color-divider: #eee;
+$color-quote: #999;
+
+// Table colors ---------------------------------------------------------------
+
+$table-heading-color: $color-white;
+$table-heading-bg-color: rgba($color-brand-one, .7);
+$table-border-color: rgba($color-brand-one, .7);
+$table-grid-row-color: rgba($color-brand-one, .7);
+$table-grid-column-color: rgba($color-brand-one, .7);
+$table-alt-row-bg-color: rgba($color-brand-one, .1);
+
+// Content Reveal colors ------------------------------------------------------
+
+$content-reveal-heading: $color-text;
+$content-reveal-heading-bg: #f5f5f5;
+$content-reveal-border: #ddd;
+
+// Media queries --------------------------------------------------------------
+
+$small-mobile: 'screen and (max-width: 400px)';
+$mobile: 'screen and (max-width: 767px)';
+$not-mobile: 'screen and (min-width:768px)';
+$tablet: 'screen and (min-width: 768px) and (max-width: 991px)';
+$tablet-mobile: 'screen and (max-width: 991px)';
+$desktop: 'screen and (min-width: 992px)';
+$large-desktop: 'screen and (min-width: 1200px)';
+
+// Prototype colors -----------------------------------------------------------
+
+$gray-10: darken($color-white, 10%);
+$gray-15: darken($color-white, 15%);
+$gray-30: darken($color-white, 30%);
+$gray-50: darken($color-white, 50%);
+$gray-60: darken($color-white, 60%);
+$gray-70: darken($color-white, 70%);
+$gray-90: darken($color-white, 90%);

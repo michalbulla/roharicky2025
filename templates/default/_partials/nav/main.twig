@@ -1,38 +1,22 @@
-{% cache globally %}
-  {% set nav = siteOptions.mainNavigation.all %}
   {% apply spaceless %}
-    <nav class="absolute left-0 z-10 hidden w-full bg-gray-600 md:bg-transparent md:w-auto md:static md:block md:py-1" id="main-nav" role="menu" tabindex="-1">
-      <ul class="list-none">
-        {% for entry in nav %}
-          <li class="md:relative md:inline-block group">
-            <div class="flex justify-between items-center px-2 md:px-0">
-              <a class="flex-grow block md:px-4 py-3 md:py-2 font-bold md:font-black tracking-wide text-white transition-colors duration-300 ease-linear md:hover:bg-white/25 md:focus:bg-white/25 md:inline-block text-xl" role="menuitem" href="{{ entry.url }}">
-                {{ entry.title }}
-              </a>
-              {% if entry.getChildren|length %}
-                <button type="button" aria-label="Main Navigation Subpages Toggle" title="Main Navigation Subpages Toggle" aria-expanded="false" aria-controls="main-navigation-subpages" _="on click toggle .hidden on the <div/> in me then toggle .hidden on the next <ul/>">
-                  <div class="main-nav-chevron block px-4 md:hidden text-white">
-                    {{ svg("@webroot/img/icons/chevron-right-solid.svg")|attr({class: 'h-5 w-5 inline-block'}) }}
-                  </div>
-                  <div class="main-nav-chevron hidden px-4 md:hidden text-white">
-                    {{ svg("@webroot/img/icons/chevron-down-solid.svg")|attr({class: 'h-5 w-5 inline-block'}) }}
-                  </div>
-                </button>
+    <nav class="main-nav" id="main-nav" role="menu" tabindex="-1">
+      <div class="container">
+        <ul>
+          {% for entry in siteOptions.mainNavigation.all %}
+            <li>
+              <a role="menuitem" href="{{ entry.url }}" class="dropdownToggle">{{ entry.title }}</a>
+              {% set childPages = entry.getChildren().all %}
+              {% if childPages | length %}
+                <ul class="dropdownMenu hidden-xs">
+                  {% for page in childPages %}
+                    <li><a href="{{ page.url() }}">{{ page.title }}</a></li>
+                  {% endfor %}
+                </ul>
               {% endif %}
-            </div>
-            {% set childPages = entry.getChildren().all %}
-            {% if childPages | length %}
-              <ul id="main-navigation-subpages" class="z-20 md:absolute left-0 hidden w-full md:w-64 divide-y divide-gray-500 shadow-lg md:group-hover:block bg-white/95 top-10 ">
-                {% for page in childPages %}
-                  <li>
-                    <a class="block px-3 py-2 text-gray-600 normal-case hover:text-red-400" href="{{ page.url() }}">{{ page.title }}</a>
-                  </li>
-                {% endfor %}
-              </ul>
-            {% endif %}
-          </li>
-        {% endfor %}
-      </ul>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
     </nav>
   {% endapply %}
-{% endcache %}
+

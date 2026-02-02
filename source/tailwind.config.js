@@ -4,7 +4,7 @@ module.exports = {
   content: ['./templates/**/*.twig'],
   theme: {
     fontFamily: {
-      primary: ['ui-sans-serif', 'sans-serif'],
+      primary: ['Poppins', 'sans-serif'],
       //   secondary: ['ui-sans-serif', 'sans-serif'],
     },
     screens: {
@@ -25,7 +25,7 @@ module.exports = {
       colors: {
         brand: {
           // put the custom site color here
-          blue: colors.blue[500],
+          'green': '#0A6108',
         },
         content: {
           'text': colors.gray[600],

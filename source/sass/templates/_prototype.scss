@@ -1,0 +1,172 @@
+header {
+  @media #{$not-mobile} {
+    padding-top: 1em;
+  }
+
+  .logo {
+    a {
+      background-color: $gray-15;
+      display: block;
+      padding: 1em;
+
+      font-weight: bold;
+      color: $gray-70;
+
+      &::before {
+        content: attr(title);
+        display: block;
+
+        @media #{$not-mobile} {
+          text-align: center;
+        }
+      }
+    }
+
+    img {
+      display: none;
+    }
+  }
+
+  .header-block {
+    background-color: $gray-15;
+  }
+}
+
+.crumbs {
+  font-size: .875em;
+  margin: 2em 0;
+}
+
+.main-nav {
+  background-color: $gray-60;
+  margin-top: 3.46em;
+  @media #{$not-mobile} {
+    margin-top: 1em;
+  }
+
+  > ul {
+    > li {
+      a {
+        color: $gray-10;
+
+        &:hover {
+          background-color: $gray-70;
+          color: $color-white;
+        }
+      }
+
+      &.active > a,
+      &.open > a {
+        background-color: $gray-70;
+        color: $color-white;
+      }
+
+      &.mobile-only {
+        background-color: $gray-90;
+      }
+    }
+  }
+}
+
+.main-nav > ul > li > ul.dropdownMenu {
+  background-color: $gray-10;
+
+  > li {
+    > a {
+      color: $gray-70;
+
+      &:hover {
+        background-color: $gray-30;
+      }
+    }
+  }
+}
+
+.main-nav-toggle {
+  padding: 0;
+  margin-right: 1em;
+}
+
+.sub-nav {
+  background-color: $gray-10;
+  padding: 15px;
+  margin-bottom: 2em;
+
+  ul {
+    li {
+      a {
+        color: $gray-70;
+
+        &:hover {
+          background-color: $gray-30;
+          margin: {
+            left: -15px;
+            right: -15px;
+          }
+          padding: {
+            left: 15px;
+            right: 15px;
+          }
+        }
+      }
+
+      &.active a {
+        background-color: $gray-30;
+        margin: {
+          left: -15px;
+          right: -15px;
+        }
+        padding: {
+          left: 15px;
+          right: 15px;
+        }
+      }
+    }
+  }
+}
+
+.sub-nav-mobile {
+  background-color: $gray-50;
+  margin-bottom: 1em;
+
+  .panel-heading {
+    h2 {
+      color: $color-white;
+      font-size: 1.125em;
+    }
+  }
+
+  ul {
+    li {
+      border-bottom: 1px solid $gray-60;
+
+      a {
+        color: $gray-10;
+        font-size: 1em;
+      }
+
+      &.active a {
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+footer {
+  .footer-block {
+    background-color: $gray-30;
+    color: $gray-60;
+    padding: 2em 0 1em;
+  }
+}
+
+.btn {
+  background-color: $gray-50;
+  color: $color-white;
+
+  &:hover,
+  &:focus {
+    background-color: $gray-60;
+    color: $color-white;
+  }
+}

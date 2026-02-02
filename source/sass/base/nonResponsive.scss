@@ -1,0 +1,29 @@
+/* Non-responsive overrides
+ *
+ * Utilitze the following CSS to disable the responsive-ness of the container,
+ * grid system, and navbar.
+ */
+
+// Replace the following variable in _variables.scss
+// $not-mobile: 'screen and (min-width:1px)';
+
+@media #{$not-mobile} {
+
+  // Reset the container
+  .container {
+    max-width: none !important;
+    width: 970px;
+  }
+
+  .page-wrap {
+    min-width: 970px;
+  }
+
+  .crumbs {
+    display: block;
+  }
+
+  .sidebar {
+    display: block;
+  }
+}
