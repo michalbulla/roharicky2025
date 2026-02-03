@@ -1,16 +1,9 @@
 {% set borderClass = block.showBorder ? 'img-border' %}
 {% set transform = block.imageSize.value %}
 
-{% set pageWidth = '' %}
-{% set contentWidth = '' %}
-{% for row in siteSettings.themeSettings %}
-  {% if row.setting == 'pageWidth' %}
-    {% set pageWidth = row.value %}
-  {% endif %}
-  {% if row.setting == 'contentWidth' %}
-    {% set contentWidth = row.value %}
-  {% endif %}
-{% endfor %}
+{% set pageWidth = '1100' %}
+{% set contentWidth = '960' %}
+
 
 {% set imageFull = {
     mode: 'fit',

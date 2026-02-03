@@ -1,0 +1,13 @@
+{% if block.quote|length %}
+  </div></div></div></div></div>
+  <div class="bg-pattern-purple pt-12 pb-12 lg:pt-20 lg:pb-16 mb-8">
+    <div class="px-4 lg:container !max-w-[1100px]">
+      <p class="text-2xl md:text-3xl text-white text-center mb-8">{{ block.quote }}</p>
+      <p class="font-bold text-xl text-center text-white mb-12">{{ block.quoteAuthor }}</p>
+      <div class="btn-wrap center">
+        <a href="impact-stories" class="btn">Stories</a>
+      </div>
+    </div>
+  </div>
+  <div class="px-4 lg:px-4 lg:container !max-w-[1100px] default-content"> <div>
+{% endif %}

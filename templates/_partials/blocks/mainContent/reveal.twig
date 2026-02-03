@@ -1,0 +1,18 @@
+{% if block.revealContent|length %}
+  <div class="my-5 border-2 border-brand-purple-light">
+  <div class="flex items-center justify-between px-5 py-3 cursor-pointer bg-brand-purple-light text-brand-text box-shadow" _="on click toggle .hidden on .js-reveal in me toggle .open-body on the next .js-reveal-body">
+    <div class="flex-grow font-bold text-lg text-content-text hover:underline">
+      {{ block.title }}
+    </div>
+    <div >
+      {{ svg("@webroot/img/icons/icon-open.svg")|attr({class: 'h-8 w-8 inline-block js-reveal'}) }}
+      {{ svg("@webroot/img/icons/icon-close.svg")|attr({class: 'h-8 w-8 inline-block hidden js-reveal'}) }}
+    </div>
+  </div>
+  <div class="px-5 js-reveal-body">
+    <div class="default-content">
+      {{ block.revealContent }}
+    </div>
+  </div>
+</div>
+{% endif %}
