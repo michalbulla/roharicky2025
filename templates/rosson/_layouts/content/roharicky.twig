@@ -1,0 +1,17 @@
+<div class="page">
+    <div class="content">
+      <div class="main-content" id="main-content-start">
+        {% block mainContent %}
+          {% cache %}
+            <h1>{{ pageHeading }}</h1>
+            {% if entry.mainContent %}
+              {% for matrixBlock in entry.mainContent.all %}
+                {% set include_type = '_partials/blocks/main-content/' ~ matrixBlock.type %}
+                {% include include_type with {'block': matrixBlock} %}
+              {% endfor %}
+            {% endif %}
+          {% endcache %}
+        {% endblock %}
+      </div>
+    </div>
+</div>

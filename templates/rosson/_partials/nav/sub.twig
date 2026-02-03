@@ -1,0 +1,54 @@
+{#
+  {% include '_partials/nav/sub' with {
+    'currentPageParent': sectionPage
+    'currentPage': entry,
+    'uri': currentPage.uri,
+    'heading': heading,
+    'entries': entries
+  } only %}
+#}
+{% cache %}
+
+  {% if currentPage is not defined %}
+    {% set currentPage = entry %}
+  {% endif %}
+
+  {% if uri is not defined %}
+    {% set uri = currentPage.uri %}
+  {% endif %}
+
+  {% if entries is defined and entries | length %}
+    {% set subpages = entries %}
+    {% set currentPageParentTitle = heading %}
+  {% else %}
+    {% if currentPageParent is defined %}
+      {% set currentPageParentTitle = currentPageParent.title %}
+      {% set subpages = currentPageParent.getChildren() %}
+    {% else  %}
+      {% if currentPage.getChildren() | length %}
+        {% set subpages = currentPage.getChildren() %}
+        {% set currentPageParentTitle = currentPage.title %}
+      {% else %}
+        {% if currentPage.getParent %}
+          {% set currentPageParent = currentPage.getParent %}
+          {% set currentPageParentTitle = currentPageParent.title %}
+          {% set subpages = currentPageParent.getChildren() %}
+        {% endif %}
+      {% endif %}
+    {% endif %}
+  {% endif %}
+
+
+  {% if subpages is defined and subpages | length %}
+    <div id="sub-nav" class="sub-nav">
+      <h2 class="px-4 py-3 text-xl font-bold text-white bg-gray-500 ">{{ currentPageParentTitle }}</h2>
+      <ul class="p-4 pb-10">
+        {% nav subpage in subpages.all %}
+          <li class="{{ subpage.uri == uri ? 'text-gray-700' : 'text-gray-500' }}">
+            <a class="block py-1.5 text-lg font-bold hover:text-gray-700" href="{{ subpage.url }}">{{ subpage.title }}</a>
+          </li>
+        {% endnav %}
+      </ul>
+    </div>
+  {% endif %}
+{% endcache %}

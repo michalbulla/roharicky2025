@@ -1,0 +1,7 @@
+{% if block.headingLink %}
+  <a href="{{block.headingLink}}" {{ block.headingLink.target ? 'target="_blank"' }}>
+{% endif %}
+<{{ block.headingLevel }} class="text-{{ block.alignment }}">{{ block.title }}</{{ block.headingLevel }}>
+{% if block.headingLink %}
+  </a>
+{% endif %}

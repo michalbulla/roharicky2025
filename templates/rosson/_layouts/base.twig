@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  {# Specify the Hreflang Tag #}
+  <link rel="alternate" hreflang="en" href="{{ siteUrl|trim('/', 'right') }}">
+
+  {# Render the SEO output #}
+  {% hook 'seomateMeta' %}
+  {% include '_shared/analytics' %}
+
+  {# Custom Fonts #}
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet"> 
+
+  {# Favorite Icons #}
+  {# Link to the favicons process:
+  https://docs.google.com/document/d/1tfcjhdlop5TVMAuf5tRVrpnLC3XcgR8sPCRJZu5RyvA/edit#heading=h.o81pnonmirdd #}
+  {# {% include '_partials/favicon' %} #}
+
+  {# Include all CSS collected through 'css' and 'view.registerCssFile(url)' #}
+  {{ head() }}
+
+  <!-- Custom styles for this template -->
+  <link href="{{ craft.tungsten.assetUrl('styles.css') }}" rel="stylesheet">
+
+
+</head>
+<body class="font-primary text-content-text">
+  {% block pageLayout %}
+  {% endblock %}
+  {% include '_shared/adminPanel' %}
+
+  {# Hyperscript #}
+  <script src="https://unpkg.com/hyperscript.org@0.9.5"></script>
+
+  {# Custom Js Files #}
+  <script src="{{ craft.tungsten.assetUrl('scripts.js') }}"></script>
+
+  {# Include all JS collected through 'js' and 'view.registerJsFile(url)' #}
+  {{ endBody() }}
+
+</body>
+</html>

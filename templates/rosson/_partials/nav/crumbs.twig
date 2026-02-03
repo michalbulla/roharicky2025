@@ -1,0 +1,13 @@
+{% cache %}
+  {% apply spaceless %}
+    <ul class="my-3 space-x-2 text-sm text-gray-500">
+      <li class="inline-block"><a href="/">Home</a></li>
+      <li class="inline-block">/</li>
+      {% for crumb in entry.getAncestors().all %}
+        <li class="inline-block">{{ crumb.getLink() }}</li>
+        <li class="inline-block">/</li>
+      {% endfor %}
+      <li class="inline-block">{{ entry.title }}</li>
+    </ul>
+  {% endapply %}
+{% endcache %}

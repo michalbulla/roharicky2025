@@ -1,0 +1,47 @@
+{#
+  {% include '_partials/nav/pagination' with {
+    'paginate': paginate,
+    'distance': 3,
+    'ariaLabel': 'News Pagination'
+  } only %}
+#}
+{% set dist = distance|default(3) %}
+{% if paginate.totalPages > 1 %}
+  <nav aria-label="{{ ariaLabel|default('Pagination') }}">
+    <ul class="space-x-1">
+      {% if paginate.prevUrl %}
+        <li class="inline-block">
+          <a class="inline-block px-2 py-1 bg-gray-300 rounded hover:ring-2 hover:ring-blue-700" href="{{ paginate.prevUrl }}" aria-label="Previous">
+            <span aria-hidden="true">{{ svg("@webroot/img/icons/chevron-left-solid.svg")|attr({class: 'h-4 w-4 inline-block'}) }}</span>
+          </a>
+        </li>
+      {% endif %}
+
+      {% for page, url in paginate.getPrevUrls(dist) %}
+        <li class="hidden md:inline-block">
+          <a class="inline-block px-3 py-1 bg-gray-300 rounded hover:ring-2 hover:ring-blue-700" href="{{ url }}">{{ page }}</a>
+        </li>
+      {% endfor %}
+
+      <li class="inline-block">
+        <a class="inline-block px-3 py-1 font-bold text-white bg-gray-500 rounded" href="#">
+          {{ paginate.currentPage }}<span class="sr-only">(current)</span>
+        </a>
+      </li>
+
+      {% for page, url in paginate.getNextUrls(dist) %}
+        <li class="hidden md:inline-block">
+          <a class="inline-block px-3 py-1 bg-gray-300 rounded hover:ring-2 hover:ring-blue-700" href="{{ url }}">{{ page }}</a>
+        </li>
+      {% endfor %}
+
+      {% if paginate.nextUrl %}
+        <li class="inline-block">
+          <a class="inline-block px-2 py-1 bg-gray-300 rounded hover:ring-2 hover:ring-blue-700" href="{{ paginate.nextUrl }}" aria-label="Next">
+            <span aria-hidden="true">{{ svg("@webroot/img/icons/chevron-right-solid.svg")|attr({class: 'h-4 w-4 inline-block'}) }}</span>
+          </a>
+        </li>
+      {% endif %}
+    </ul>
+  </nav>
+{% endif %}

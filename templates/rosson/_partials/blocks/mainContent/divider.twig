@@ -1,0 +1,16 @@
+{% set spaceAboveClass = block.spaceAbove %}
+{% set spaceBelowClass = block.spaceBelow %}
+{% set hrStyle = [] %}
+
+{%- if spaceBelowClass == 'custom' %}
+  {% set margin = 'margin-bottom: ' ~ block.spaceBelowCustom ~ 'em' %}
+  {% set hrStyle = hrStyle|merge([margin]) %}
+{% endif %}
+
+{%- if not block.visible %}
+  {% set hrStyle = hrStyle|merge(['border-color: transparent !important']) %}
+{% endif %}
+
+<div class="divider {{ spaceAboveClass }}"{% if spaceAboveClass == 'custom' %} style="padding-top: {{ block.spaceAboveCustom }}em"{% endif %}>
+  <hr class="{{ spaceBelowClass }}"{% if hrStyle|length %} style="{{ hrStyle|join('; ') }}"{% endif %} />
+</div>

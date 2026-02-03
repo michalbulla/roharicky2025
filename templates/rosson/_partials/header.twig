@@ -1,0 +1,13 @@
+<header>
+  <div class="lg:container lg:px-4">
+    <div class="header-container">
+      <div class="header-block">
+        {# <div class="logo"><a  class="logo-desktop" href="/" title="Back to Home Page"><img src="/img/logo.png" alt="{{ siteName }}" /></a><a class="logo-mobile" href="/" title="Back to Home Page"><img src="/img/logo.png" alt="{{ siteName }}" /></a></div> #}
+        <button type="button" aria-label="Main Navigation Toggle" title="Main Navigation Toggle" aria-haspopup="true" aria-controls="main-nav" aria-expanded="false" class="main-nav-toggle" id="main-nav-toggle">
+          {{ svg("@webroot/img/icons/bars-solid.svg")|attr({class: 'h-8 w-8 inline-block text-brand-green'}) }}
+        </button>
+      </div>
+    </div>
+  </div>
+  {% include '_partials/nav/main' %}
+</header>

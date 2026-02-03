@@ -1,0 +1,67 @@
+{#
+  {% include '_partials/nav/subMobile' with {
+    'currentPageParent': sectionPage
+    'currentPage': entry,
+    'uri': entry.uri,
+    'heading': heading,
+    'entries': entries
+  } only %}
+#}
+{% cache %}
+
+  {% if currentPage is not defined %}
+    {% set currentPage = entry %}
+  {% endif %}
+
+  {% if uri is not defined %}
+    {% set uri = currentPage.uri %}
+  {% endif %}
+
+  {% if entries is defined and entries | length %}
+    {% set subpages = entries %}
+    {% set currentPageParentTitle = heading %}
+  {% else %}
+    {% if currentPageParent is defined %}
+      {% set currentPageParentTitle = currentPageParent.title %}
+      {% set subpages = currentPageParent.getChildren() %}
+    {% else  %}
+      {% if currentPage.getChildren() | length %}
+        {% set subpages = currentPage.getChildren() %}
+        {% set currentPageParentTitle = currentPage.title %}
+      {% else %}
+        {% if currentPage.getParent %}
+          {% set currentPageParent = currentPage.getParent %}
+          {% set currentPageParentTitle = currentPageParent.title %}
+          {% set subpages = currentPageParent.getChildren() %}
+        {% endif %}
+      {% endif %}
+    {% endif %}
+  {% endif %}
+
+  {% if subpages is defined and subpages| length %}
+    <div class="px-4 text-white bg-gray-400 mb-4 md:hidden">
+      <button class="w-full" type="button" id="sub-nav-toggle" aria-label="Sub Navigation Toggle" title="Sub Navigation Toggle" aria-expanded="false" aria-controls="sub-nav-body">
+        <div class="flex items-center justify-between py-4 text-xl font-bold uppercase">
+          <div class="flex items-center">
+            {{ svg("@webroot/img/icons/bars-solid.svg")|attr({class: 'h-5 w-5 inline-block mr-2'}) }} {{ currentPageParentTitle }}
+          </div>
+          <div class="block sub-nav-chevron">
+            {{ svg("@webroot/img/icons/chevron-right-solid.svg")|attr({class: 'h-5 w-5 inline-block'}) }}
+          </div>
+          <div class="hidden sub-nav-chevron">
+            {{ svg("@webroot/img/icons/chevron-down-solid.svg")|attr({class: 'h-5 w-5 inline-block'}) }}
+          </div>
+        </div>
+      </button>
+      <div id="sub-nav-body" class="hidden">
+        <ul class="pb-2">
+          {% nav subpage in subpages.all %}
+            <li class="{% if subpage.uri == uri %}bg-white/20{% endif %}">
+              <a class="block py-2 text-lg pl-7" href="{{ subpage.url }}">{{ subpage.title }}</a>
+            </li>
+          {% endnav %}
+        </ul>
+      </div>
+    </div>
+  {% endif %}
+{% endcache %}
