@@ -1,0 +1,31 @@
+{% extends "_layouts/base" %}
+{% set uri = entry.uri|default('blog') %}
+{% set pageHeading = entry.pageHeading|default(entry.title) %}
+
+{% set showSidebar = true %}
+
+{% block pageLayout %}
+  {% embed '_layouts/page/homePage' %}
+    {% block contentLayout %}
+      {% embed '_layouts/content/homePage' %}
+
+        {% block mainContent %}
+
+          {% if entry.oznam|length %}
+            <div class="oznam">
+              {{ entry.oznam }}
+            </div>
+          {% endif %}
+          
+          
+          {% for matrixBlock in entry.mainContent.all %}
+            {% set include_type = '_partials/blocks/main-content/' ~ matrixBlock.type %}
+            {% include include_type with {'block': matrixBlock} %}
+          {% endfor %}
+          
+          
+        {% endblock %}
+      {% endembed %}
+    {% endblock %}
+  {% endembed %}
+{% endblock %}
